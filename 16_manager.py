@@ -22,80 +22,80 @@ ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
 root = ctk.CTk()
-root.title("Менеджер аккаунтов")
+root.title("менеджер аккаунтов")
 root.geometry("650x820")
 
 platforms = [
-    "Steam",
-    "Epic Games",
-    "GOG",
-    "Battle.net",
-    "Telegram",
-    "WhatsApp",
-    "Viber",
-    "Discord",
-    "VK",
-    "Одноклассники",
-    "Instagram",
-    "Facebook",
-    "Google",
-    "Yandex",
-    "Mail.ru",
-    "Тарков (EFT)",
-    "Rust",
-    "Apex Legends",
-    "CS2",
-    "Uplay",
-    "Origin",
-    "Rockstar Games",
-    "Riot Games",
-    "Другая"
+    "steam",
+    "epic games",
+    "gog",
+    "battle.net",
+    "telegram",
+    "whatsapp",
+    "viber",
+    "discord",
+    "vk",
+    "одноклассники",
+    "instagram",
+    "facebook",
+    "google",
+    "yandex",
+    "mail.ru",
+    "тарков (eft)",
+    "rust",
+    "apex legends",
+    "cs2",
+    "uplay",
+    "origin",
+    "rockstar games",
+    "riot games",
+    "другая"
 ]
 
 def update_platform_field():
-    if platform_menu.get() == "Другая":
+    if platform_menu.get() == "другая":
         other_platform_entry.configure(state="normal")
     else:
         other_platform_entry.configure(state="disabled")
 
-ctk.CTkLabel(root, text="Имя аккаунта:").pack(pady=(10, 0))
+ctk.CTkLabel(root, text="имя аккаунта:").pack(pady=(10, 0))
 entry_name = ctk.CTkEntry(root, width=320)
 entry_name.pack(pady=(0, 5))
 
-ctk.CTkLabel(root, text="Логин:").pack(pady=(0, 0))
+ctk.CTkLabel(root, text="логин:").pack(pady=(0, 0))
 entry_login = ctk.CTkEntry(root, width=320)
 entry_login.pack(pady=(0, 5))
 
-ctk.CTkLabel(root, text="Пароль:").pack(pady=(0, 0))
+ctk.CTkLabel(root, text="пароль:").pack(pady=(0, 0))
 entry_password = ctk.CTkEntry(root, width=320, show="*")
 entry_password.pack(pady=(0, 5))
 
-ctk.CTkLabel(root, text="Почта:").pack(pady=(0, 0))
+ctk.CTkLabel(root, text="почта:").pack(pady=(0, 0))
 entry_email = ctk.CTkEntry(root, width=320)
 entry_email.pack(pady=(0, 5))
 
-ctk.CTkLabel(root, text="Платформа:").pack(pady=(0, 0))
+ctk.CTkLabel(root, text="платформа:").pack(pady=(0, 0))
 platform_menu = ctk.CTkComboBox(root, values=platforms, width=320, command=lambda e: update_platform_field())
-platform_menu.set("Steam")
+platform_menu.set("steam")
 platform_menu.pack(pady=(0, 5))
 
-other_platform_entry = ctk.CTkEntry(root, width=320, placeholder_text="Своя платформа")
+other_platform_entry = ctk.CTkEntry(root, width=320, placeholder_text="своя платформа")
 other_platform_entry.pack(pady=(0, 5))
 other_platform_entry.configure(state="disabled")
 
-ctk.CTkLabel(root, text="Двухфакторка:").pack(pady=(0, 0))
-twofa_var = ctk.StringVar(value="Нет")
-ctk.CTkRadioButton(root, text="Да", variable=twofa_var, value="Да").pack()
-ctk.CTkRadioButton(root, text="Нет", variable=twofa_var, value="Нет").pack()
+ctk.CTkLabel(root, text="двухфакторка:").pack(pady=(0, 0))
+twofa_var = ctk.StringVar(value="нет")
+ctk.CTkRadioButton(root, text="да", variable=twofa_var, value="да").pack()
+ctk.CTkRadioButton(root, text="нет", variable=twofa_var, value="нет").pack()
 
-ctk.CTkLabel(root, text="Поиск:").pack(pady=(10, 0))
-search_entry = ctk.CTkEntry(root, width=320, placeholder_text="Введи имя аккаунта")
+ctk.CTkLabel(root, text="поиск:").pack(pady=(10, 0))
+search_entry = ctk.CTkEntry(root, width=320, placeholder_text="введи имя аккаунта")
 search_entry.pack(pady=(0, 5))
 
 listbox = tk.Listbox(root, width=70, height=12, bg="#1e1e1e", fg="white", selectbackground="#3b82f6")
 listbox.pack(pady=(10, 5))
 
-detail_label = ctk.CTkLabel(root, text="Нажми на аккаунт, чтобы увидеть данные", font=("Arial", 12), wraplength=550)
+detail_label = ctk.CTkLabel(root, text="нажми на аккаунт, чтобы увидеть данные", font=("Arial", 12), wraplength=550)
 detail_label.pack(pady=(5, 5))
 
 def refresh_list():
@@ -109,7 +109,7 @@ def clear_fields():
     entry_password.delete(0, "end")
     entry_email.delete(0, "end")
     other_platform_entry.delete(0, "end")
-    twofa_var.set("Нет")
+    twofa_var.set("нет")
 
 def add_account():
     name = entry_name.get()
@@ -119,11 +119,11 @@ def add_account():
     platform = platform_menu.get()
     twofa = twofa_var.get()
 
-    if platform == "Другая":
-        platform = other_platform_entry.get() or "Другая"
+    if platform == "другая":
+        platform = other_platform_entry.get() or "другая"
 
     if not name or not login:
-        messagebox.showwarning("Внимание", "Имя и логин обязательны!")
+        messagebox.showwarning("внимание", "имя и логин обязательны!")
         return
 
     account = {
@@ -143,18 +143,18 @@ def add_account():
 def delete_account():
     selection = listbox.curselection()
     if not selection:
-        messagebox.showinfo("Инфо", "Сначала выбери аккаунт.")
+        messagebox.showinfo("инфо", "сначала выбери аккаунт.")
         return
 
     index = selection[0]
     acc = accounts[index]
 
-    answer = messagebox.askyesno("Удаление", f"Удалить {acc['name']}?")
+    answer = messagebox.askyesno("удаление", f"удалить {acc['name']}?")
     if answer:
         accounts.pop(index)
         save_accounts(accounts)
         refresh_list()
-        detail_label.configure(text="Нажми на аккаунт, чтобы увидеть данные")
+        detail_label.configure(text="нажми на аккаунт, чтобы увидеть данные")
 
 def search_accounts():
     query = search_entry.get().lower()
@@ -173,12 +173,12 @@ def show_account_details(event):
     acc = accounts[index]
 
     info = (
-        f"Имя: {acc['name']} | "
-        f"Логин: {acc['login']} | "
-        f"Пароль: {acc['password']} | "
-        f"Почта: {acc['email']} | "
-        f"Платформа: {acc['platform']} | "
-        f"Двухфакторка: {acc['twofa']}"
+        f"имя: {acc['name']} | "
+        f"логин: {acc['login']} | "
+        f"пароль: {acc['password']} | "
+        f"почта: {acc['email']} | "
+        f"платформа: {acc['platform']} | "
+        f"двухфакторка: {acc['twofa']}"
     )
     detail_label.configure(text=info)
 
@@ -187,10 +187,10 @@ listbox.bind("<<ListboxSelect>>", show_account_details)
 button_frame = ctk.CTkFrame(root)
 button_frame.pack(pady=10)
 
-ctk.CTkButton(button_frame, text="Добавить", command=add_account).pack(side="left", padx=5)
-ctk.CTkButton(button_frame, text="Удалить", command=delete_account).pack(side="left", padx=5)
-ctk.CTkButton(button_frame, text="Очистить", command=clear_fields).pack(side="left", padx=5)
-ctk.CTkButton(button_frame, text="Поиск", command=search_accounts).pack(side="left", padx=5)
+ctk.CTkButton(button_frame, text="добавить", command=add_account).pack(side="left", padx=5)
+ctk.CTkButton(button_frame, text="удалить", command=delete_account).pack(side="left", padx=5)
+ctk.CTkButton(button_frame, text="очистить", command=clear_fields).pack(side="left", padx=5)
+ctk.CTkButton(button_frame, text="поиск", command=search_accounts).pack(side="left", padx=5)
 
 refresh_list()
 
